@@ -16,7 +16,8 @@
 			<header>
 				<h1>dop / development operations pipeline</h1>
 				<p>development operations pipeline</p>
-				<p>collection of tools and conventions based on <a href="http://www.opscode.com/chef" title="Opscode chef">chef</a> and <a href="http://www.vagrantup.com" title="development environments made easy">vagrant</a> for local development and remote deployment</p>
+				<p>collection of tools and conventions for<br />
+				local development and remote deployment</p>
 				<ul>
 					<li><a href="https://github.com/ffuenf/dop">View On <strong>GitHub</strong></a></li>
 				</ul>
@@ -24,6 +25,73 @@
 			<section>
 				<h3>Description</h3>
 				<p>This framework provides a common structure for projects and applications which may be developed locally and deployed remotely on a server. It provides flexible components which can be mixed and matched to only contain the specific services needed.</p>
+				<h3>Tools (essentials)</h3>
+				<ul>
+					<li><a href="https://github.com/jedi4ever/veewee">veewee</a></li>
+					<li><a href="http://www.vagrantup.com">vagrant</a></li>
+					<li><a href="https://www.virtualbox.org">virtualbox</a></li>
+					<li><a href="http://www.opscode.com/chef">chef</a></li>
+					<li><a href="https://github.com/applicationsonline/librarian">librarian</a></li>
+					<li><a href="http://matschaffer.github.com/knife-solo">knife-solo</a></li>
+					<li><a href="https://github.com/thbishop/knife-solo_data_bag">knife-solo_data_bag</a></li>
+					<li><a href="http://git-scm.com">git</a></li>
+				</ul>
+				<h3>Components</h3>
+				<ul>
+					<li>dop:base / base setup</li>
+					<li>dop:main / project specific settings</li>
+					<li>dop:opsrv / setup of dedicated git hosting (via <a href="http://www.gitlabhq.com">gitlab</a>) and system monitoring/logging on a separate host</li>
+					<li>dop:magento / generic magento setup with advanced features</li>
+					<li>dop:expressionengine / generic expressionengine setup</li>
+				</ul>
+				<h3>Structure</h3>
+				<pre>
+					<code>
+├── .git
+├── .gitignore
+├── appname1 # git submodule
+│   ├── .git
+│   ├── .gitignore
+│   ├── deploy
+│   ├── public # document root
+│   └── shared # shared resources
+├── appname2 # git submodule
+│   ├── .git
+│   ├── .gitignore
+│   ├── deploy
+│   ├── public # document root
+│   └── shared # shared resources
+└── tools
+    ├── chef
+    │   ├── .chef
+    │   ├── cookbooks
+    │   ├── data_bags
+    │   ├── nodes
+    │   ├── site-cookbooks
+    │   │   ├── appname1
+    │   │   │   ├── attributes
+    │   │   │   ├── files
+    │   │   │   ├── recipes
+    │   │   │   └── templates
+    │   │   └── appname2
+    │   │       ├── attributes
+    │   │       ├── files
+    │   │       ├── recipes
+    │   │       └── templates
+    │   └── data_bag_key
+    ├── vagrant
+    │   ├── .librarian
+    │   ├── boxes
+    │   ├── tmp
+    │   ├── Cheffile
+    │   ├── Cheffile.lock
+    │   ├── Vagrantfile
+    │   └── Vagrantfile.pkg
+    └── veewee
+        ├── definitions
+        └── iso
+</code>
+				</pre>
 			</section>
 			<footer>
 				<p>This project is maintained by <a href="https://github.com/ffuenf">ffuenf</a></p>
