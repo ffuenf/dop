@@ -101,6 +101,14 @@ header {
   position:fixed;
 }
 
+header h1 {
+  display: block;
+  text-indent: -99999px;
+  width: 270px;
+  height: 104px;
+  background: url(../images/dop.png) no-repeat 0 0;
+}
+
 header ul {
   list-style:none;
   height:40px;
