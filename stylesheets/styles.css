@@ -254,3 +254,12 @@ footer {
 		color:#444;
 	}
 }
+
+span.org a.ffuenf {
+	display: block;
+	background: url(../images/ffuenf.png) no-repeat 0 0;
+	width: 74px;
+	height: 16px;
+	margin: 2px 30px 10px 0;
+	text-indent: -9999px;
+}
