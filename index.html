@@ -39,8 +39,7 @@
 				<h3>Components</h3>
 				<ul>
 					<li>dop:base / base setup</li>
-					<li>dop:main / project specific settings</li>
-					<li>dop:opsrv / setup of dedicated git hosting (via <a href="http://www.gitlabhq.com">gitlab</a>) and system monitoring/logging on a separate host</li>
+					<li>dop:gitlab / setup of dedicated git hosting (via <a href="http://www.gitlabhq.com">gitlab</a>)</li>
 					<li>dop:magento / generic magento setup with advanced features</li>
 					<li>dop:expressionengine / generic expressionengine setup</li>
 				</ul>
@@ -68,6 +67,11 @@
     │   ├── data_bags
     │   ├── nodes
     │   ├── site-cookbooks
+    │   │   ├── dop_base
+    │   │   │   ├── attributes
+    │   │   │   ├── files
+    │   │   │   ├── recipes
+    │   │   │   └── templates
     │   │   ├── appname1
     │   │   │   ├── attributes
     │   │   │   ├── files
