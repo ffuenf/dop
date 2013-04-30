@@ -4,8 +4,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<title>dop / development operations pipeline by ffuenf</title>
-	<link rel="stylesheet" href="dop/stylesheets/styles.css">
-	<link rel="stylesheet" href="dop/stylesheets/pygment_trac.css">
+	<link rel="stylesheet" href="stylesheets/styles.css">
+	<link rel="stylesheet" href="stylesheets/pygment_trac.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,8 +39,9 @@
 				<h3>Components</h3>
 				<ul>
 					<li><a href="https://github.com/ffuenf/dop_base">dop_base</a> / base setup of dop framework</li>
-					<li><a href="https://github.com/ffuenf/dop_gitlab">dop_gitlab</a> / setup of dedicated git hosting with dop component</li>
+					<li><a href="https://github.com/ffuenf/dop_main">dop_main</a> / wrapper cookbook for multi-application installations</li>
 					<li><a href="https://github.com/ffuenf/dop_magento">dop_magento</a> / setup of magento with dop component</li>
+					<li><a href="https://github.com/ffuenf/dop_gitlab">dop_gitlab</a> / setup of dedicated git hosting with dop component</li>
 					<li>dop:expressionengine / generic expressionengine setup</li>
 				</ul>
 				<h3>Structure</h3>
@@ -48,52 +49,59 @@
 					<code>
 ├── .git
 ├── .gitignore
-├── appname1 # git submodule
+├── .gitmodules
+├── appname1/ # git submodule
 │   ├── .git
 │   ├── .gitignore
-│   ├── deploy
-│   ├── public # document root
-│   └── shared # shared resources
-├── appname2 # git submodule
+│   ├── deploy/
+│   ├── public/ # document root
+│   └── shared/ # shared resources
+├── appname2/ # git submodule
 │   ├── .git
 │   ├── .gitignore
-│   ├── deploy
-│   ├── public # document root
-│   └── shared # shared resources
-└── tools
-    ├── chef
-    │   ├── .chef
-    │   ├── cookbooks
-    │   ├── data_bags
-    │   ├── nodes
-    │   ├── site-cookbooks
-    │   │   ├── dop_base
-    │   │   │   ├── attributes
-    │   │   │   ├── files
-    │   │   │   ├── recipes
-    │   │   │   └── templates
-    │   │   ├── appname1
-    │   │   │   ├── attributes
-    │   │   │   ├── files
-    │   │   │   ├── recipes
-    │   │   │   └── templates
-    │   │   └── appname2
-    │   │       ├── attributes
-    │   │       ├── files
-    │   │       ├── recipes
-    │   │       └── templates
+│   ├── deploy/
+│   ├── public/ # document root
+│   └── shared/ # shared resources
+└── tools/
+    ├── chef/
+    │   ├── .chef/
+    │   ├── .site-cookbooks/
+    │   │   ├── dop_base/ # base setup of dop framework
+    │   │   │   ├── attributes/
+    │   │   │   ├── files/
+    │   │   │   ├── recipes/
+    │   │   │   └── templates/
+    │   │   ├── dop_main/ # wrapper cookbook for multi-application installations
+    │   │   │   ├── attributes/
+    │   │   │   ├── files/
+    │   │   │   ├── recipes/
+    │   │   │   └── templates/
+    │   │   ├── appname1/
+    │   │   │   ├── attributes/
+    │   │   │   ├── files/
+    │   │   │   ├── recipes/
+    │   │   │   └── templates/
+    │   │   └── appname2/
+    │   │       ├── attributes/
+    │   │       ├── files/
+    │   │       ├── recipes/
+    │   │       └── templates/
+    │   ├── cookbooks/
+    │   ├── data_bags/
+    │   ├── nodes/
+    │   ├── roles/
     │   └── data_bag_key
-    ├── vagrant
-    │   ├── .librarian
-    │   ├── boxes
-    │   ├── tmp
+    ├── vagrant/
+    │   ├── .librarian/
+    │   ├── boxes/
+    |   |   └── debian-6.0.7-amd64.box
     │   ├── Cheffile
-    │   ├── Cheffile.lock
-    │   ├── Vagrantfile
-    │   └── Vagrantfile.pkg
-    └── veewee
-        ├── definitions
-        └── iso
+    │   ├── Cheffile.lock # locked cookbook versions
+    │   └── Vagrantfile
+    └── veewee/
+        ├── definitions/
+        |   └── debian-6.0.7-amd64/
+        └── iso/
 </code>
 				</pre>
 			</section>
