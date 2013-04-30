@@ -6,7 +6,7 @@ It provides flexible components which can be mixed and matched to only contain t
 
 This repository is intended as blueprint for a project based on the dop framework.
 Ultimately this is the repository which holds all components of your project including:
-* definition of base operating system (use veewee to build base-boxes for virtualbox)
+* definition of base operating system (use [veewee](https://github.com/jedi4ever/veewee) to build base-boxes for virtualbox)
 * vagrant configuration to spin up local development/testing VMs
 * chef cookbooks which holds configuration of all system services (ensuring that local VMs have the exact same configuration of your production machine)
 * all sensitive information like passwords using encrypted databags (the data_bag_key is the only item which NEVER EVER should be added to version control!)
@@ -78,7 +78,7 @@ Usage
 To start a new dop project you may clone this repository and move on frome here.
 Do not fork this project as it is not intended to be used this way!
 
-To set the configurations to your preferences, you have to clone dop_base into the tools/chef/.site-cookbooks/ directory and add an entry to your Cheffile (see comments). 
+To set the configurations to your preferences, you have to clone [dop_base](https://github.com/ffuenf/dop_base) into the tools/chef/.site-cookbooks/ directory and add an entry to your Cheffile (see comments). 
 From there on you can adjust the dop_base cookbook. Before you provision your local VM or a remote machine you have to tell librarian to cache the site-cookbook to the cookbooks/ directory (use `librarian-chef install` or `librarian-chef update` in the tools/vagrant directory).
 To include your application code you may add git submodules at the root of this repository (stay tuned for a complete magento example).
 
@@ -88,11 +88,12 @@ Requirements
 Applications
 ---------
 
-* vagrant
+* [veewee](https://github.com/jedi4ever/veewee)
+* [vagrant](http://vagrantup.com)
 * vagrant-vbguest plugin (`vagrant plugin install vagrant-vbguest`)
-* virtualbox
-* chef (we do not use chef-server!)
-* git
+* [virtualbox](https://www.virtualbox.org/)
+* [chef](http://www.opscode.com/chef/) (we do not use chef-server!)
+* [git](http://git-scm.com/)
 
 
 Platform
