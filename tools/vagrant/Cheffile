@@ -1,0 +1,10 @@
+site 'http://community.opscode.com/api/v1'
+
+cookbook "dotdeb",
+	:git => "https://github.com/ffuenf/chef-dotdeb",
+	:ref => "master"
+
+# site-cookbooks
+
+#cookbook "dop_base",
+#	:path => "../chef/.site-cookbooks/dop_base"
