@@ -12,6 +12,66 @@ Ultimately this is the repository which holds all components of your project inc
 * all sensitive information like passwords using encrypted databags (the data_bag_key is the only item which NEVER EVER should be added to version control!)
 * application code linked in as git submodules (this is where you will develop your application (e.g. magento) in the end)
 
+Directory structure
+---------
+```
+├── .git
+├── .gitignore
+├── .gitmodules
+├── appname1/ # git submodule
+│   ├── .git
+│   ├── .gitignore
+│   ├── deploy/
+│   ├── public/ # document root
+│   └── shared/ # shared resources
+├── appname2/ # git submodule
+│   ├── .git
+│   ├── .gitignore
+│   ├── deploy/
+│   ├── public/ # document root
+│   └── shared/ # shared resources
+└── tools/
+    ├── chef/
+    │   ├── .chef/
+    │   ├── .site-cookbooks/
+    │   │   ├── dop_base/ # base setup of dop framework
+    │   │   │   ├── attributes/
+    │   │   │   ├── files/
+    │   │   │   ├── recipes/
+    │   │   │   └── templates/
+    │   │   ├── dop_main/ # wrapper cookbook for multi-application installations
+    │   │   │   ├── attributes/
+    │   │   │   ├── files/
+    │   │   │   ├── recipes/
+    │   │   │   └── templates/
+    │   │   ├── appname1/
+    │   │   │   ├── attributes/
+    │   │   │   ├── files/
+    │   │   │   ├── recipes/
+    │   │   │   └── templates/
+    │   │   └── appname2/
+    │   │       ├── attributes/
+    │   │       ├── files/
+    │   │       ├── recipes/
+    │   │       └── templates/
+    │   ├── cookbooks/
+    │   ├── data_bags/
+    │   ├── nodes/
+    │   ├── roles/
+    │   └── data_bag_key # DO NOT EVER CHECK-IN THIS INTO VERSION CONTROL!
+    ├── vagrant/
+    │   ├── .librarian/
+    │   ├── boxes/
+    |   |   └── debian-6.0.7-amd64.box
+    │   ├── Cheffile
+    │   ├── Cheffile.lock # locked cookbook versions
+    │   └── Vagrantfile
+    └── veewee/
+        ├── definitions/
+        |   └── debian-6.0.7-amd64/
+        └── iso/
+````
+
 Usage
 =====
 
@@ -28,9 +88,10 @@ Requirements
 Applications
 ---------
 
-* vagrant 1.2.2
+* vagrant
 * vagrant-vbguest plugin (`vagrant plugin install vagrant-vbguest`)
 * virtualbox
+* chef (we do not use chef-server!)
 * git
 
 
