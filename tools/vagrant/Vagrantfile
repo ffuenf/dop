@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
 	
 		# virtualbox
 		development_config.vm.box = "debian-6.0.7-amd64"
-		development_config.vm.box_url = "boxes/debian-6.0.7-amd64.box"
+		development_config.vm.box_url = "https://s3-eu-west-1.amazonaws.com/ffuenf-vagrant-boxes/debian-6.0.7-amd64.box"
 	
 		# virtualbox options
 		development_config.vm.provider :virtualbox do |v|

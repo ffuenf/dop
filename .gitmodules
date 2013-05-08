@@ -1,0 +1,3 @@
+[submodule "tools/veewee/definitions"]
+	path = tools/veewee/definitions
+	url = https://github.com/ffuenf/vagrant-boxes.git

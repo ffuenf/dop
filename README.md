@@ -62,13 +62,16 @@ Directory structure
     ├── vagrant/
     │   ├── .librarian/
     │   ├── boxes/
-    |   |   └── debian-6.0.7-amd64.box
+    |   |   ├── debian-6.0.7-amd64.box
+    |   |   └── debian-7.0.0-amd64.box
     │   ├── Cheffile
     │   ├── Cheffile.lock # locked cookbook versions
     │   └── Vagrantfile
     └── veewee/
         ├── definitions/
-        |   └── debian-6.0.7-amd64/
+        |   ├── .git # submodule ffuenf/vagrant-boxes
+        |   ├── debian-6.0.7-amd64/
+        |   └── debian-7.0.0-amd64/
         └── iso/
 ````
 
