@@ -1,5 +1,6 @@
 tools/vagrant/tmp/
 tools/chef/data_bag_key
+tools/chef/.data_bags/
 *.box
 *.iso
 .vagrant*

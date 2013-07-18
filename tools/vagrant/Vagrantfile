@@ -1,14 +1,30 @@
 Vagrant.configure("2") do |config|
-	
-	nfs_status = (ENV['WINDOWS']) ? false : true
-	
-	config.vbguest.iso_path = "../veewee/iso/VBoxGuestAdditions_$VBOX_VERSION.iso"
+
+	############## PLEASE CHANGE ##############
+	local_os = "osx" # "windows", "osx"
+	local_provision = true # true, false
+	local_hostname = "dop"
+	local_developer = nil
+	local_ipv4 = [
+		{
+			"ip" => "10.0.0.1",
+			"domains" => [
+				"#{local_hostname}-#{local_developer}.local",
+				"#{local_hostname}-#{local_developer}"
+			]
+		}
+	]
+	local_prebuild_box = "debian-7.1.0-amd64"
+	local_prebuild_box_url = "https://s3-eu-west-1.amazonaws.com/ffuenf-vagrant-boxes/debian-7.1.0-amd64.box"
+	local_vm_memory = 2048
+	local_vm_cpus = 2
+	local_vm_gui = false
+	############## PLEASE CHANGE ##############
+
+	config.vbguest.iso_path = "iso/VBoxGuestAdditions_$VBOX_VERSION.iso"
 	config.vbguest.auto_update = true
 	config.vbguest.no_remote = false
-	
 	config.ssh.forward_agent = true
-	
-	local_developer = (ENV['DOP_USERNAME']) ? ENV['DOP_USERNAME'] : "dop"
 
 ##############
 # LOCAL
@@ -20,38 +36,59 @@ Vagrant.configure("2") do |config|
 			exit
 		end
 		
-		development_config.vm.hostname = "dop-#{local_developer}"
+		development_config.vm.hostname = "#{local_hostname}-#{local_developer}"
 		
 		# network
-		development_config.vm.network :private_network, ip: "10.0.0.1"
+		local_ipv4.each do |entry|
+			development_config.vm.network :private_network, ip: "#{entry['ip']}"
+		end
 	
 		# shared folders
 		# tbd
 	
 		# virtualbox
-		development_config.vm.box = "debian-6.0.7-amd64"
-		development_config.vm.box_url = "https://s3-eu-west-1.amazonaws.com/ffuenf-vagrant-boxes/debian-6.0.7-amd64.box"
+		development_config.vm.box = local_prebuild_box
+		if !local_prebuild_box_url.nil? then
+			development_config.vm.box_url = local_prebuild_box_url
+		else
+			development_config.vm.box_url = "boxes/#{local_prebuild_box}.box"
+		end
 	
 		# virtualbox options
 		development_config.vm.provider :virtualbox do |v|
-			v.gui = false
+			v.gui = local_vm_gui
 			v.customize ["modifyvm", :id, "--memory", 2048]
 			v.customize ["modifyvm", :id, "--cpus", 2]
 			v.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
 		end
+		
+		# shell
+		development_config.vm.provision :shell, :inline => "sed -i 's/http.us.debian/ftp.de.debian/g' /etc/apt/sources.list"
+		development_config.vm.provision :shell, :inline => "sed -i 's/http.us.archive/ftp.de.archive/g' /etc/apt/sources.list"
+		development_config.vm.provision :shell, :inline => "apt-get update --fix-missing"
+		development_config.vm.provision :shell, :inline => "echo \"Europe/Berlin\" | sudo tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata"
 	
 		# chef solo
-		development_config.vm.provision :chef_solo do |chef|
-			chef.cookbooks_path = ['../chef/cookbooks']
-			chef.data_bags_path = ['../chef/data_bags']
-			chef.encrypted_data_bag_secret_key_path = "../chef/data_bag_key"
-			chef.roles_path = "../chef/roles"
-			chef.add_role("vagrant")
-			chef.json.merge!(
-				'dop_base' => {
-					'local_developer' => local_developer
+		if local_provision then
+			development_config.vm.provision :chef_solo do |chef|
+				chef.cookbooks_path = ['../chef/cookbooks']
+				chef.data_bags_path = ['../chef/data_bags']
+				chef.encrypted_data_bag_secret_key_path = "../chef/data_bag_key"
+				chef.roles_path = "../chef/roles"
+				chef.add_role("vagrant")
+				
+				chef.json = {
+					'dop_base' => {
+						'local_developer' => local_developer,
+						'hosts' => {
+							'hostname' => "#{local_hostname}-#{local_developer}",
+							'ipv4' => local_ipv4
+						}
+					}
 				}
-			)
+			end
+		else
+			# do shell commands when using a prebuild box
 		end
 	end
 end
