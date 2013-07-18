@@ -28,6 +28,7 @@
 				<h3>Tools (essentials)</h3>
 				<ul>
 					<li><a href="https://github.com/jedi4ever/veewee">veewee</a></li>
+					<li><a href="http://www.packer.io">packer.io</a></li>
 					<li><a href="http://www.vagrantup.com">vagrant</a></li>
 					<li><a href="https://www.virtualbox.org">virtualbox</a></li>
 					<li><a href="http://www.opscode.com/chef">chef</a></li>
@@ -43,7 +44,7 @@
 					<li>dop_main / wrapper cookbook for multi-application installations</li>
 					<li>dop_magento / setup of magento with dop component</li>
 					<li>dop_gitlab / setup of dedicated git hosting with dop component</li>
-					<li>dop:expressionengine / generic expressionengine setup</li>
+					<li>dop_expressionengine / generic expressionengine setup</li>
 				</ul>
 				<h3>Structure</h3>
 				<pre>
@@ -64,9 +65,20 @@
 │   ├── public/ # document root
 │   └── shared/ # shared resources
 └── tools/
+    │── baseboxes/
+    │   ├── .git # submodule ffuenf/vagrant-boxes
+    │   ├── packer/
+    │   |   ├── debian-6.0.7-amd64/
+    │   |   ├── debian-7.0.0-amd64/
+    │   |   └── debian-7.1.0-amd64/
+    │   └── veewee/
+    │       ├── debian-6.0.7-amd64/
+    │       ├── debian-7.0.0-amd64/
+    │       └── debian-7.1.0-amd64/
     ├── chef/
     │   ├── .chef/
     │   ├── .site-cookbooks/
+    │   ├── .data_bags/ # unencrypted data_bag source files fur use with knife-solo_data_bag
     │   │   ├── dop_base/ # base setup of dop framework
     │   │   │   ├── attributes/
     │   │   │   ├── files/
@@ -91,18 +103,15 @@
     │   ├── data_bags/
     │   ├── nodes/
     │   ├── roles/
-    │   └── data_bag_key
-    ├── vagrant/
-    │   ├── .librarian/
-    │   ├── boxes/
-    |   |   └── debian-6.0.7-amd64.box
-    │   ├── Cheffile
-    │   ├── Cheffile.lock # locked cookbook versions
-    │   └── Vagrantfile
-    └── veewee/
-        ├── definitions/
-        |   └── debian-6.0.7-amd64/
-        └── iso/
+    │   └── data_bag_key # DO NOT EVER CHECK-IN THIS INTO VERSION CONTROL!
+    └── vagrant/
+        ├── .librarian/
+        ├── boxes/
+        |   ├── debian-6.0.7-amd64.box
+        |   └── debian-7.0.0-amd64.box
+        ├── Cheffile
+        ├── Cheffile.lock # locked cookbook versions
+        └── Vagrantfile
 </code>
 				</pre>
 			</section>
