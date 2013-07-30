@@ -27,7 +27,6 @@
 				<p>This framework provides a common structure for projects and applications which may be developed locally and deployed remotely on a server. It provides flexible components which can be mixed and matched to only contain the specific services needed.</p>
 				<h3>Tools (essentials)</h3>
 				<ul>
-					<li><a href="https://github.com/jedi4ever/veewee">veewee</a></li>
 					<li><a href="http://www.packer.io">packer.io</a></li>
 					<li><a href="http://www.vagrantup.com">vagrant</a></li>
 					<li><a href="https://www.virtualbox.org">virtualbox</a></li>
@@ -56,25 +55,17 @@
 ├── appname1/ # git submodule
 │   ├── .git
 │   ├── .gitignore
-│   ├── deploy/
-│   ├── public/ # document root
+│   ├── public/ # document root (exposed to public)
 │   └── shared/ # shared resources
 ├── appname2/ # git submodule
 │   ├── .git
 │   ├── .gitignore
-│   ├── deploy/
-│   ├── public/ # document root
+│   ├── public/ # document root (exposed to public)
 │   └── shared/ # shared resources
 └── tools/
     │── baseboxes/
     │   ├── .git # submodule ffuenf/vagrant-boxes
-    │   ├── packer/
-    │   |   ├── debian-6.0.7-amd64/
-    │   |   ├── debian-7.0.0-amd64/
-    │   |   └── debian-7.1.0-amd64/
-    │   └── veewee/
-    │       ├── debian-6.0.7-amd64/
-    │       ├── debian-7.0.0-amd64/
+    │   └── packer/
     │       └── debian-7.1.0-amd64/
     ├── chef/
     │   ├── .chef/
@@ -108,8 +99,7 @@
     └── vagrant/
         ├── .librarian/
         ├── boxes/
-        |   ├── debian-6.0.7-amd64.box
-        |   └── debian-7.0.0-amd64.box
+        |   └── debian-7.1.0-amd64.box
         ├── Cheffile
         ├── Cheffile.lock # locked cookbook versions
         └── Vagrantfile
