@@ -6,7 +6,7 @@ It provides flexible components which can be mixed and matched to only contain t
 
 This repository is intended as blueprint for a project based on the dop framework.
 Ultimately this is the repository which holds all components of your project including:
-* definition of base operating system (use [veewee](https://github.com/jedi4ever/veewee) or [packer](http://www.packer.io) to build base-boxes for virtualbox)
+* definition of base operating system (use [packer](http://www.packer.io) to build base-boxes for virtualbox)
 * vagrant configuration to spin up local development/testing VMs
 * chef cookbooks which holds configuration of all system services (ensuring that local VMs have the exact same configuration of your production machine)
 * all sensitive information like passwords using encrypted databags (the data_bag_key is the only item which NEVER EVER should be added to version control!)
@@ -21,25 +21,17 @@ Directory structure
 ├── appname1/ # git submodule
 │   ├── .git
 │   ├── .gitignore
-│   ├── deploy/
-│   ├── public/ # document root
+│   ├── public/ # document root (exposed to public)
 │   └── shared/ # shared resources
 ├── appname2/ # git submodule
 │   ├── .git
 │   ├── .gitignore
-│   ├── deploy/
-│   ├── public/ # document root
+│   ├── public/ # document root (exposed to public)
 │   └── shared/ # shared resources
 └── tools/
     │── baseboxes/
     │   ├── .git # submodule ffuenf/vagrant-boxes
-    │   ├── packer/
-    │   |   ├── debian-6.0.7-amd64/
-    │   |   ├── debian-7.0.0-amd64/
-    │   |   └── debian-7.1.0-amd64/
-    │   └── veewee/
-    │       ├── debian-6.0.7-amd64/
-    │       ├── debian-7.0.0-amd64/
+    │   └── packer/
     │       └── debian-7.1.0-amd64/
     ├── chef/
     │   ├── .chef/
@@ -73,8 +65,7 @@ Directory structure
     └── vagrant/
         ├── .librarian/
         ├── boxes/
-        |   ├── debian-6.0.7-amd64.box
-        |   └── debian-7.0.0-amd64.box
+        |   └── debian-7.1.0-amd64.box
         ├── Cheffile
         ├── Cheffile.lock # locked cookbook versions
         └── Vagrantfile
@@ -96,10 +87,8 @@ Requirements
 Applications
 ---------
 
-* [veewee](https://github.com/jedi4ever/veewee)
 * [packer](http://www.packer.io)
 * [vagrant](http://vagrantup.com)
-* vagrant-vbguest plugin (`vagrant plugin install vagrant-vbguest`)
 * [virtualbox](https://www.virtualbox.org/)
 * [chef](http://www.opscode.com/chef/) (we do not use chef-server!)
 * [git](http://git-scm.com/)

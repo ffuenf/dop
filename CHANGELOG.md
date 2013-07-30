@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of dop.
 
+## 0.0.4 (July 30, 2013)
+
+* cleaned necessary folder include
+* refactored vagrant workflow (local provisioning moved to chef run)
+
 ## 0.0.3 (July 18, 2013)
 
 * track new version of [submodule vagrant-boxes](https://github.com/ffuenf/vagrant-boxes) which integrates packer

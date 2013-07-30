@@ -69,13 +69,14 @@ Vagrant.configure("2") do |config|
 		end
 	
 		# chef solo
-		if local_provision then
-			development_config.vm.provision :chef_solo do |chef|
-				chef.cookbooks_path = ['../chef/cookbooks']
-				chef.data_bags_path = ['../chef/data_bags']
-				chef.encrypted_data_bag_secret_key_path = "../chef/data_bag_key"
-				chef.roles_path = "../chef/roles"
-				chef.add_role("vagrant")
+		development_config.vm.provision :chef_solo do |chef|
+			chef.cookbooks_path = ['../chef/cookbooks']
+			chef.data_bags_path = ['../chef/data_bags']
+			chef.encrypted_data_bag_secret_key_path = "../chef/data_bag_key"
+			chef.roles_path = "../chef/roles"
+			
+			if local_provision then
+				chef.add_role("vagrant_provision")
 				
 				chef.json = {
 					'dop_base' => {
@@ -86,9 +87,9 @@ Vagrant.configure("2") do |config|
 						}
 					}
 				}
+			else
+				chef.add_role("vagrant_prebuild")
 			end
-		else
-			# do shell commands when using a prebuild box
 		end
 	end
 end
