@@ -1,3 +1,6 @@
 [submodule "tools/baseboxes"]
 	path = tools/baseboxes
 	url = https://github.com/ffuenf/vagrant-boxes.git
+[submodule "tools/chef/.site-cookbooks/dop_base"]
+	path = tools/chef/.site-cookbooks/dop_base
+	url = https://arosenhagen@github.com/ffuenf/dop_base.git
