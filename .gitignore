@@ -11,7 +11,6 @@
 
 tools/vagrant/tmp/
 tools/chef/data_bag_key
-tools/chef/.data_bags/
 tools/chef/cookbooks/
 *.box
 *.iso
