@@ -16,3 +16,4 @@ tools/chef/cookbooks/
 *.box
 *.iso
 .vagrant*
+knife-solo.instructions.txt

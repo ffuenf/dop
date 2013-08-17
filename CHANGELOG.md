@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of dop.
 
+## 0.0.5 (August 17, 2013)
+
+* added Gemfile to pin version of chef
+* added dop_base cookbook per default
+* added setting for vagrant plugin librarian_chef
+
 ## 0.0.4 (July 30, 2013)
 
 * cleaned necessary folder include

@@ -4,7 +4,11 @@ cookbook "dotdeb",
 	:git => "https://github.com/ffuenf/chef-dotdeb",
 	:ref => "master"
 
+cookbook "dop_base",
+	:git => "https://github.com/ffuenf/dop_base",
+	:ref => "master"
+
 # site-cookbooks
 
-#cookbook "dop_base",
-#	:path => "../chef/.site-cookbooks/dop_base"
+#cookbook "dop_main",
+#	:path => "../chef/.site-cookbooks/dop_main"

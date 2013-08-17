@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+gem 'chef', '~>11.6.0'
+gem 'knife-solo', '~>0.3.0.pre3'
+gem 'knife-solo_data_bag', '~>0.4.0'
+gem 'librarian-chef'
