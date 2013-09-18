@@ -31,9 +31,7 @@
 					<li><a href="http://www.vagrantup.com">vagrant</a></li>
 					<li><a href="https://www.virtualbox.org">virtualbox</a></li>
 					<li><a href="http://www.opscode.com/chef">chef</a></li>
-					<li><a href="https://github.com/applicationsonline/librarian">librarian</a></li>
 					<li><a href="http://matschaffer.github.com/knife-solo">knife-solo</a></li>
-					<li><a href="https://github.com/thbishop/knife-solo_data_bag">knife-solo_data_bag</a></li>
 					<li><a href="http://git-scm.com">git</a></li>
 				</ul>
 				<h3>Components</h3>
@@ -41,10 +39,12 @@
 					<li><a href="https://github.com/ffuenf/dop">dop</a> / blueprint for a dop project</li>
 					<li><a href="https://github.com/ffuenf/dop_base">dop_base</a> / base setup of dop framework</li>
 					<li><a href="https://github.com/ffuenf/dop_mysql">dop_mysql</a> / setup of mysql as dop component</li>
+					<li><a href="https://github.com/ffuenf/dop_nginx">dop_nginx</a> / setup of nginx as dop component</li>
+					<li><a href="https://github.com/ffuenf/dop_php">dop_php</a> / setup of php as dop component</li>
+					<li><a href="https://github.com/ffuenf/dop_varnish">dop_varnish</a> / setup of varnish as dop component</li>
+					<li><a href="https://github.com/ffuenf/dop_datadog">dop_datadog</a> / setup of datadog as dop component</li>
 					<li>dop_main / wrapper cookbook for multi-application installations</li>
-					<li>dop_magento / setup of magento with dop component</li>
-					<li>dop_gitlab / setup of dedicated git hosting with dop component</li>
-					<li>dop_expressionengine / generic expressionengine setup</li>
+					<li>dop_magento / setup of magento as dop component (requires dop_base, dop_mysql, dop_nginx, dop_php, dop_varnish)</li>
 				</ul>
 				<h3>Structure</h3>
 				<pre>
@@ -68,9 +68,12 @@
     │   └── packer/
     │       └── debian-7.1.0-amd64/
     ├── chef/
+    │   ├── create_data_bags.sh # helper script to rebuild/encrypt all data_bags at once
     │   ├── .chef/
+    │   │   ├── knife.rb
+    │   │   └── data_bag_key # DO NOT EVER CHECK-IN THIS INTO VERSION CONTROL!
+    │   ├── .data_bags/ # unencrypted data_bag source files for use with knife-solo_data_bag
     │   ├── .site-cookbooks/
-    │   ├── .data_bags/ # unencrypted data_bag source files fur use with knife-solo_data_bag
     │   │   ├── dop_base/ # base setup of dop framework
     │   │   │   ├── attributes/
     │   │   │   ├── files/
@@ -93,15 +96,17 @@
     │   │       └── templates/
     │   ├── cookbooks/
     │   ├── data_bags/
+    │   ├── environments/
     │   ├── nodes/
-    │   ├── roles/
-    │   └── data_bag_key # DO NOT EVER CHECK-IN THIS INTO VERSION CONTROL!
+    │   └── roles/
     └── vagrant/
+        ├── .vagrant_plugins.json # vagrant plugins for use with bindler
         ├── .librarian/
         ├── boxes/
         |   └── debian-7.1.0-amd64.box
         ├── Cheffile
         ├── Cheffile.lock # locked cookbook versions
+        ├── provision.sh # shell file which can be called by vagrant to do manual provisioning (for temporary fixes/updates)
         └── Vagrantfile
 </code>
 				</pre>
