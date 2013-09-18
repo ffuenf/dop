@@ -8,11 +8,11 @@
 *.BAK
 *.old
 *.OLD
-
-tools/vagrant/tmp/
-tools/chef/data_bag_key
-tools/chef/cookbooks/
 *.box
 *.iso
-.vagrant*
-knife-solo.instructions.txt
+Gemfile.lock
+
+data_bag_key
+tools/vagrant/.vagrant/
+tools/vagrant/tmp/
+tools/chef/cookbooks/
