@@ -45,8 +45,7 @@
 					<li><a href="https://github.com/ffuenf/dop_varnish">dop_varnish</a> / setup of varnish as dop component</li>
 					<li><a href="https://github.com/ffuenf/dop_datadog">dop_datadog</a> / setup of datadog as dop component</li>
 					<li><a href="https://github.com/ffuenf/dop_zabbix">dop_zabbix</a> / setup of zabbix as dop component</li>
-					<li>dop_main / wrapper cookbook for multi-application installations</li>
-					<li>dop_magento / setup of magento as dop component (requires dop_base, dop_mysql, dop_nginx, dop_php, dop_varnish)</li>
+					<li>dop_magento / full stack of professional magento installation</li>
 				</ul>
 				<h3>Structure</h3>
 				<pre>
@@ -58,58 +57,57 @@
 │   ├── .git
 │   ├── .gitignore
 │   ├── public/ # document root (exposed to public)
-│   └── shared/ # shared resources
+│   ├── shared/ # shared resources
+│   └── sql/ # sql dumps
 ├── appname2/ # git submodule
 │   ├── .git
 │   ├── .gitignore
 │   ├── public/ # document root (exposed to public)
-│   └── shared/ # shared resources
-└── tools/
-    │── baseboxes/
-    │   ├── .git # submodule ffuenf/vagrant-boxes
-    │   └── packer/
-    │       └── debian-7.1.0-amd64/
-    ├── chef/
-    │   ├── create_data_bags.sh # helper script to rebuild/encrypt all data_bags at once
-    │   ├── .chef/
-    │   │   ├── knife.rb
-    │   │   └── data_bag_key # DO NOT EVER CHECK-IN THIS INTO VERSION CONTROL!
-    │   ├── .data_bags/ # unencrypted data_bag source files for use with knife-solo_data_bag
-    │   ├── .site-cookbooks/
-    │   │   ├── dop_base/ # base setup of dop framework
-    │   │   │   ├── attributes/
-    │   │   │   ├── files/
-    │   │   │   ├── recipes/
-    │   │   │   └── templates/
-    │   │   ├── dop_main/ # wrapper cookbook for multi-application installations
-    │   │   │   ├── attributes/
-    │   │   │   ├── files/
-    │   │   │   ├── recipes/
-    │   │   │   └── templates/
-    │   │   ├── appname1/
-    │   │   │   ├── attributes/
-    │   │   │   ├── files/
-    │   │   │   ├── recipes/
-    │   │   │   └── templates/
-    │   │   └── appname2/
-    │   │       ├── attributes/
-    │   │       ├── files/
-    │   │       ├── recipes/
-    │   │       └── templates/
-    │   ├── cookbooks/
-    │   ├── data_bags/
-    │   ├── environments/
-    │   ├── nodes/
-    │   └── roles/
-    └── vagrant/
-        ├── .vagrant_plugins.json # vagrant plugins for use with bindler
-        ├── .librarian/
-        ├── boxes/
-        |   └── debian-7.1.0-amd64.box
-        ├── Cheffile
-        ├── Cheffile.lock # locked cookbook versions
-        ├── provision.sh # shell file which can be called by vagrant to do manual provisioning (for temporary fixes/updates)
-        └── Vagrantfile
+│   ├── shared/ # shared resources
+│   └── sql/ # sql dumps
+├── tools/
+│   ├── chef/
+│   │   ├── .chef/
+│   │   │   ├── knife.rb
+│   │   │   └── data_bag_key # DO NOT EVER CHECK-IN THIS INTO VERSION CONTROL!
+│   │   ├── .data_bags/ # unencrypted data_bag source files fur use with knife-solo_data_bag
+│   │   ├── .site-cookbooks/
+│   │   │   ├── appname1/
+│   │   │   │   ├── attributes/
+│   │   │   │   ├── files/
+│   │   │   │   ├── recipes/
+│   │   │   │   ├── templates/
+│   │   │   │   ├── CHANGELOG.md
+│   │   │   │   ├── metadata.rb
+│   │   │   │   └── README.md
+│   │   │   └── appname2/
+│   │   │       ├── attributes/
+│   │   │       ├── files/
+│   │   │       ├── recipes/
+│   │   │       ├── templates/
+│   │   │       ├── CHANGELOG.md
+│   │   │       ├── metadata.rb
+│   │   │       └── README.md
+│   │   ├── data_bags/
+│   │   ├── environments/
+│   │   ├── nodes/
+│   │   ├── roles/
+│   │   │   ├── local.rb # configuration for local machine
+│   │   │   └── remote.rb # configuration for remote machine
+│   │   └── create_data_bags.sh # shortcut script to generate all data_bags
+│   └── vagrant/
+│       ├── .librarian/
+│       │   └── chef
+│       │       └── config
+│       ├── boxes/
+│       │   └── .gitignore # ignore packaged boxes
+│       ├── Cheffile
+│       ├── Cheffile.lock # locked cookbook versions
+│       └── Vagrantfile
+├──.ruby-gemset # rvm config
+├──.ruby-version # rvm config
+├── Gemfile # ruby dependencies 
+└── Gemfile.lock # locked ruby dependencies
 </code>
 				</pre>
 			</section>
