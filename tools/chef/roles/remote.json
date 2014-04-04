@@ -1,0 +1,16 @@
+{
+  "name": "remote",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "remote production machine",
+  "run_list": [
+    "recipe[dop_base::preboot]",
+    "recipe[dop_base]"
+  ],
+  "default_attributes": {},
+  "override_attributes": {
+    "dop_base": {
+      "location": "remote"
+    }
+  }
+}

@@ -1,1 +1,5 @@
-{"run_list":["dop_base::preboot"]}
+{
+  "run_list": [
+    "role[local]"
+  ]
+}

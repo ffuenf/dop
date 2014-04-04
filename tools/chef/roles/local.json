@@ -1,0 +1,34 @@
+{
+  "name": "local",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "local developers machine",
+  "run_list": [
+    "recipe[dop_base::preboot]",
+    "recipe[dop_base]"
+  ],
+  "default_attributes": {
+    "users": {
+      "host": {
+        "name": 501,
+        "group": "dialout"
+      }
+    }
+  },
+  "override_attributes": {
+    "dop_base": {
+      "location": "local",
+      "hosts": {
+        "hostname": "local",
+        "ipv4": [
+          {
+            "ip": "10.0.0.1",
+            "domains": [
+              "local"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

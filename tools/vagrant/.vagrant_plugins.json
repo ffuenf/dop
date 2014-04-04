@@ -1,7 +1,0 @@
-[
-  "vagrant-librarian-chef",
-  "vagrant-global-status",
-  "vagrant-exec",
-  "vagrant-cachier",
-  "nugrant"
-]

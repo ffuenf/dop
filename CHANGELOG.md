@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of dop.
 
+## 0.0.6 (April 4, 2014)
+
+* update to current internal usage
+* remove baseboxes submodule as boxes are more useable through vagrantcloud
+
 ## 0.0.5 (August 17, 2013)
 
 * added Gemfile to pin version of chef

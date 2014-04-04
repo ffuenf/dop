@@ -1,3 +1,0 @@
-[submodule "tools/baseboxes"]
-	path = tools/baseboxes
-	url = https://github.com/ffuenf/vagrant-boxes.git
